@@ -1,0 +1,102 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myTcLabel">Create or edit a Tc</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="tc.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="tc.name"
+                    required ng-maxlength="128" />
+            <div ng-show="editForm.name.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.name.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.name.$error.maxlength" translate-value-max="128">
+                    This field cannot be longer than 128 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_plannedDate">PlannedDate</label>
+            <input id="field_plannedDate" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="tc.plannedDate" is-open="datePickerForPlannedDate.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForPlannedDateOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_startDate">StartDate</label>
+            <input id="field_startDate" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="tc.startDate" is-open="datePickerForStartDate.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForStartDateOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_endDate">EndDate</label>
+            <input id="field_endDate" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="tc.endDate" is-open="datePickerForEndDate.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForEndDateOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_status">Status</label>
+            <select class="form-control" name="status" ng-model="tc.status" id="field_status">
+                <option value="PLANNED">PLANNED</option>
+                <option value="STARTED">STARTED</option>
+                <option value="APPROVED">APPROVED</option>
+                <option value="ARCHITECT_REVIEW">ARCHITECT_REVIEW</option>
+                <option value="FEEDBACK_NEEDED">FEEDBACK_NEEDED</option>
+                <option value="SECURITY_WAITING">SECURITY_WAITING</option>
+                <option value="CANCELED">CANCELED</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_dummy">Dummy</label>
+            <input type="text" class="form-control" name="dummy" id="field_dummy"
+                    ng-model="tc.dummy"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label for="field_review">review</label>
+            <select class="form-control" id="field_review" name="review" ng-model="tc.review" ng-options="securityReview as securityReview.name for securityReview in securityreviews track by securityReview.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_notes">notes</label>
+            <select class="form-control" id="field_notes" multiple name="notes" ng-model="tc.notess" ng-options="note as note.note for note in notes track by note.id"></select>
+        </div>
+        <div class="form-group">
+            <label for="field_reviewers">reviewers</label>
+            <select class="form-control" id="field_reviewers" multiple name="reviewers" ng-model="tc.reviewerss" ng-options="user as user.login for user in users track by user.id"></select>
+        </div>
+        <div class="form-group">
+            <label for="field_links">links</label>
+            <select class="form-control" id="field_links" multiple name="links" ng-model="tc.linkss" ng-options="link as link.link for link in links track by link.id"></select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

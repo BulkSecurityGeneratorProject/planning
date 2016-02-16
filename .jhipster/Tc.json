@@ -1,0 +1,77 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "review",
+            "otherEntityName": "securityReview",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "notes",
+            "otherEntityName": "note",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "note",
+            "ownerSide": true
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "reviewers",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "login",
+            "ownerSide": true
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "links",
+            "otherEntityName": "link",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "link",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "128"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "plannedDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "startDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "endDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "status",
+            "fieldType": "TcStatus",
+            "fieldValues": "PLANNED,STARTED,APPROVED,ARCHITECT_REVIEW,FEEDBACK_NEEDED,SECURITY_WAITING,CANCELED"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "dummy",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20160216134451",
+    "dto": "no",
+    "service": "serviceClass",
+    "pagination": "infinite-scroll"
+}

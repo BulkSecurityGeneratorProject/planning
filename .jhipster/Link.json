@@ -1,0 +1,29 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "text",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "100"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "link",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "1024"
+        }
+    ],
+    "changelogDate": "20160216125934",
+    "dto": "no",
+    "service": "serviceClass",
+    "pagination": "infinite-scroll"
+}

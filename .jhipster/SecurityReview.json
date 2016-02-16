@@ -1,0 +1,49 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "notes",
+            "otherEntityName": "note",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "note",
+            "ownerSide": true
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "reviewers",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "login",
+            "ownerSide": true
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "links",
+            "otherEntityName": "link",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "link",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "64"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "reviewDate",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20160216133852",
+    "dto": "no",
+    "service": "serviceClass",
+    "pagination": "infinite-scroll"
+}

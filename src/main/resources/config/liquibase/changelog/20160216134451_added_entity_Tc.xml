@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+
+    <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle"/>
+
+    <!--
+        Added the entity Tc.
+    -->
+    <changeSet id="20160216134451" author="jhipster">
+        <createTable tableName="tc">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(128)">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="planned_date" type="date"/>
+            
+            <column name="start_date" type="date"/>
+            
+            <column name="end_date" type="date"/>
+            
+            <column name="status" type="varchar(255)"/>
+            
+            <column name="dummy" type="varchar(255)"/>
+            
+            <column name="review_id" type="bigint"/>
+            <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
+        </createTable>
+        
+        <addForeignKeyConstraint baseColumnNames="review_id"
+                                 baseTableName="tc"
+                                 constraintName="fk_tc_review_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="security_review"/>
+
+        <createTable tableName="tc_notes">
+            <column name="notess_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tcs_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="tcs_id, notess_id" tableName="tc_notes"/>
+
+        <addForeignKeyConstraint baseColumnNames="tcs_id"
+                                 baseTableName="tc_notes"
+                                 constraintName="fk_tc_notes_note_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tc"/>
+
+        <addForeignKeyConstraint baseColumnNames="notess_id"
+                                 baseTableName="tc_notes"
+                                 constraintName="fk_tc_notes_tc_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="note"/>
+        
+        <createTable tableName="tc_reviewers">
+            <column name="reviewerss_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tcs_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="tcs_id, reviewerss_id" tableName="tc_reviewers"/>
+
+        <addForeignKeyConstraint baseColumnNames="tcs_id"
+                                 baseTableName="tc_reviewers"
+                                 constraintName="fk_tc_reviewers_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tc"/>
+
+        <addForeignKeyConstraint baseColumnNames="reviewerss_id"
+                                 baseTableName="tc_reviewers"
+                                 constraintName="fk_tc_reviewers_tc_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+        
+        <createTable tableName="tc_links">
+            <column name="linkss_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tcs_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="tcs_id, linkss_id" tableName="tc_links"/>
+
+        <addForeignKeyConstraint baseColumnNames="tcs_id"
+                                 baseTableName="tc_links"
+                                 constraintName="fk_tc_links_link_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tc"/>
+
+        <addForeignKeyConstraint baseColumnNames="linkss_id"
+                                 baseTableName="tc_links"
+                                 constraintName="fk_tc_links_tc_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="link"/>
+        
+    </changeSet>
+</databaseChangeLog>

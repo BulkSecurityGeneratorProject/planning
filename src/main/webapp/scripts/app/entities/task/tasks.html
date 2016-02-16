@@ -1,0 +1,80 @@
+<div>
+    <h2>Tasks</h2>
+    <jh-alert></jh-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="task.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span 
+                       >Create new Task
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="predicate" ascending="reverse" callback="reset()">
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="name"><span>Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="status"><span>Status</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="criticalness"><span>Criticalness</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="startDate"><span>StartDate</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="endDate"><span>EndDate</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="securityEngineer.login"><span>securityEngineer</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="initialSecurityReview.name"><span>initialSecurityReview</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="tc.name"><span>tc</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="project.name"><span>project</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
+                <tr ng-repeat="task in tasks track by task.id">
+                    <td><a ui-sref="task.detail({id:task.id})">{{task.id}}</a></td>
+                    <td>{{task.name}}</td>
+                    <td translate="{{'planningApp.TaskStatus.' + task.status}}">{{task.status}}</td>
+                    <td translate="{{'planningApp.Criticalness.' + task.criticalness}}">{{task.criticalness}}</td>
+                        <td>{{task.startDate | date:'mediumDate'}}</td>
+                        <td>{{task.endDate | date:'mediumDate'}}</td>
+                    <td>
+                        {{task.securityEngineer.login}}
+                    </td>
+                    <td>
+                        <a ui-sref="securityReview.detail({id:task.initialSecurityReview.id})">{{task.initialSecurityReview.name}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="tc.detail({id:task.tc.id})">{{task.tc.name}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="project.detail({id:task.project.id})">{{task.project.name}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="task.detail({id:task.id})"
+                                    class="btn btn-info btn-sm"> 
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="task.edit({id:task.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="task.delete({id:task.id})"
+                                    class="btn btn-danger btn-sm">                                    
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

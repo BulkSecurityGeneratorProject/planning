@@ -1,0 +1,56 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "responsible",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "task",
+            "otherEntityName": "task",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "project"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "link",
+            "otherEntityName": "link",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "link",
+            "ownerSide": true
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "repositorie",
+            "otherEntityName": "link",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "link",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "64"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "criticalness",
+            "fieldType": "Criticalness",
+            "fieldValues": "LOW,MEDIUM,HIGH"
+        }
+    ],
+    "changelogDate": "20160216182801",
+    "dto": "no",
+    "service": "serviceClass",
+    "pagination": "infinite-scroll"
+}

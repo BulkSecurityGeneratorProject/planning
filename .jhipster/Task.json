@@ -1,0 +1,86 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "securityEngineer",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "initialSecurityReview",
+            "otherEntityName": "securityReview",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "tc",
+            "otherEntityName": "tc",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "notes",
+            "otherEntityName": "note",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "note",
+            "ownerSide": true
+        },
+        {
+            "relationshipId": 5,
+            "relationshipName": "links",
+            "otherEntityName": "link",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "link",
+            "ownerSide": true
+        },
+        {
+            "relationshipId": 6,
+            "relationshipName": "project",
+            "otherEntityName": "project",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "128"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "status",
+            "fieldType": "TaskStatus",
+            "fieldValues": "PLANNED,CANCELED,WIP,DONE"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "criticalness",
+            "fieldType": "Criticalness",
+            "fieldValues": "LOW,MEDIUM,HIGH"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "startDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "endDate",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20160216135100",
+    "dto": "no",
+    "service": "serviceClass",
+    "pagination": "infinite-scroll"
+}

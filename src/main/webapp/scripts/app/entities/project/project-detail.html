@@ -46,11 +46,11 @@
             </tr>
             <tr>
                 <td>
-                    <span>repositorie</span>
+                    <span>repositories</span>
                 </td>
                 <td>
-                    <span ng-repeat="repositorie in project.repositories">
-                        <a class="form-control-static" ui-sref="link.detail({id: {{repositorie.id}}})">{{repositorie.link}}</a>{{$last ? '' : ', '}}
+                    <span ng-repeat="repository in project.repositories">
+                        <a class="form-control-static" ui-sref="link.detail({id: {{repository.id}}})">{{repository.link}}</a>{{$last ? '' : ', '}}
                     </span>
                 </td>
             </tr>

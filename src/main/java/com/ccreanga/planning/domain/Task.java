@@ -31,21 +31,21 @@ public class Task implements Serializable {
     @Size(max = 128)
     @Column(name = "name", length = 128, nullable = false)
     private String name;
-    
+
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private TaskStatus status;
-    
+
     @Enumerated(EnumType.STRING)
     @Column(name = "criticalness")
     private Criticalness criticalness;
-    
+
     @Column(name = "start_date")
     private LocalDate startDate;
-    
+
     @Column(name = "end_date")
     private LocalDate endDate;
-    
+
     @ManyToOne
     @JoinColumn(name = "security_engineer_id")
     private User securityEngineer;
@@ -87,7 +87,7 @@ public class Task implements Serializable {
     public String getName() {
         return name;
     }
-    
+
     public void setName(String name) {
         this.name = name;
     }
@@ -95,7 +95,7 @@ public class Task implements Serializable {
     public TaskStatus getStatus() {
         return status;
     }
-    
+
     public void setStatus(TaskStatus status) {
         this.status = status;
     }
@@ -103,7 +103,7 @@ public class Task implements Serializable {
     public Criticalness getCriticalness() {
         return criticalness;
     }
-    
+
     public void setCriticalness(Criticalness criticalness) {
         this.criticalness = criticalness;
     }
@@ -111,7 +111,7 @@ public class Task implements Serializable {
     public LocalDate getStartDate() {
         return startDate;
     }
-    
+
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
@@ -119,7 +119,7 @@ public class Task implements Serializable {
     public LocalDate getEndDate() {
         return endDate;
     }
-    
+
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
